@@ -37,6 +37,9 @@ app.post('/:queue/', function (req, res) {
             .then(() => {
                 return ch.sendToQueue(queue, Buffer.from(JSON.stringify(body)))
             })
+            .then(() => {
+                ch.close()
+            })
     })
     .then(() => {
         console.log(`Published to ${queue}`)
