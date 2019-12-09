@@ -38,7 +38,7 @@ app.post('/:queue/', function (req, res) {
                 return ch.sendToQueue(queue, Buffer.from(JSON.stringify(body)))
             })
             .then(() => {
-                ch.close()
+                return ch.close()
             })
     })
     .then(() => {
