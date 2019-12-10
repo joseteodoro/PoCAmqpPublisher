@@ -35,7 +35,7 @@ app.post('/:queue/', function (req, res) {
     .then(ch => {
         return ch.assertQueue(queue)
             .then(() => {
-                return ch.sendToQueue(queue, Buffer.from(JSON.stringify(body)))
+                return ch.sendToQueue(queue, Buffer.from(JSON.stringify(body)).toString('base64'))
             })
             .then(() => {
                 return ch.close()
